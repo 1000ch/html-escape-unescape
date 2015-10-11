@@ -1,30 +1,28 @@
-const escapeMap = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#x27;',
-  '`': '&#x60;'
-};
+const escapeMap = new Map([
+  ['&', '&amp;'],
+  ['<', '&lt;'],
+  ['>', '&gt;'],
+  ['"', '&quot;'],
+  ["'", '&#x27;'],
+  ['`', '&#x60;']
+]);
 
-const unescapeMap = {
-  '&amp;': '&',
-  '&lt;': '<',
-  '&gt;': '>',
-  '&quot;': '"',
-  '&#x27;': "'",
-  '&#x60;': '`'
-};
+const unescapeMap = new Map([
+  ['&amp;', '&'],
+  ['&lt;', '<'],
+  ['&gt;', '>'],
+  ['&quot;', '"'],
+  ['&#x27;', "'"],
+  ['&#x60;', '`']
+]);
 
-const escapeRegex = new RegExp(`[${Object.keys(escapeMap).join('')}]`, 'g');
-const unescapeRegex = new RegExp(`(${Object.keys(unescapeMap).join('|')})`, 'g');
+const escapeRegex = new RegExp(`[${Array.from(escapeMap.keys()).join('')}]`, 'g');
+const unescapeRegex = new RegExp(`(${Array.from(unescapeMap.keys()).join('|')})`, 'g');
 
-const escapeHTML = string => string.replace(escapeRegex, match => escapeMap[match]);
-const unescapeHTML = string => string.replace(unescapeRegex, match => unescapeMap[match]);
+const escapeHTML = string => string.replace(escapeRegex, match => escapeMap.get(match));
+const unescapeHTML = string => string.replace(unescapeRegex, match => unescapeMap.get(match));
 
 window.onload = e => {
-
-  'use strict';
 
   const escapeInput  = document.querySelector('#escape-input');
   const escapeOutput = document.querySelector('#escape-output');
@@ -33,4 +31,5 @@ window.onload = e => {
 
   escapeInput.addEventListener('input', e => escapeOutput.value = escapeHTML(escapeInput.value));
   unescapeInput.addEventListener('input', e => unescapeOutput.value = unescapeHTML(unescapeInput.value));
+
 };
