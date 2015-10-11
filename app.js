@@ -3,7 +3,8 @@ const escapeMap = {
   '<': '&lt;',
   '>': '&gt;',
   '"': '&quot;',
-  "'": '&#x27;'
+  "'": '&#x27;',
+  '`': '&#x60;'
 };
 
 const unescapeMap = {
@@ -11,7 +12,8 @@ const unescapeMap = {
   '&lt;': '<',
   '&gt;': '>',
   '&quot;': '"',
-  '&#x27;': "'"
+  '&#x27;': "'",
+  '&#x60;': '`'
 };
 
 const escapeRegex = new RegExp(`[${Object.keys(escapeMap).join('')}]`, 'g');
