@@ -16,8 +16,8 @@ const unescapeMap = new Map([
   ['&#x60;', '`']
 ]);
 
-const escapeRegex = new RegExp(`[${Array.from(escapeMap.keys()).join('')}]`, 'g');
-const unescapeRegex = new RegExp(`(${Array.from(unescapeMap.keys()).join('|')})`, 'g');
+const escapeRegex = new RegExp(`[${[...escapeMap.keys()].join('')}]`, 'g');
+const unescapeRegex = new RegExp(`(${[...unescapeMap.keys()].join('|')})`, 'g');
 
 const escapeHTML = string => string.replace(escapeRegex, match => escapeMap.get(match));
 const unescapeHTML = string => string.replace(unescapeRegex, match => unescapeMap.get(match));
