@@ -23,7 +23,6 @@ const escapeHTML = string => string.replace(escapeRegex, match => escapeMap.get(
 const unescapeHTML = string => string.replace(unescapeRegex, match => unescapeMap.get(match));
 
 window.onload = e => {
-
   const escapeInput  = document.querySelector('#escape-input');
   const escapeOutput = document.querySelector('#escape-output');
   const unescapeInput  = document.querySelector('#unescape-input');
@@ -31,7 +30,6 @@ window.onload = e => {
 
   escapeInput.addEventListener('input', e => escapeOutput.value = escapeHTML(escapeInput.value));
   unescapeInput.addEventListener('input', e => unescapeOutput.value = unescapeHTML(unescapeInput.value));
-
 };
 
 if (navigator.serviceWorker) {
