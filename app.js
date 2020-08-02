@@ -31,9 +31,3 @@ window.onload = e => {
   escapeInput.addEventListener('input', e => escapeOutput.value = escapeHTML(escapeInput.value));
   unescapeInput.addEventListener('input', e => unescapeOutput.value = unescapeHTML(unescapeInput.value));
 };
-
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('service-worker.js', {
-    scope: '/html-escape-unescape/'
-  }).catch(error => console.error(error));
-}
